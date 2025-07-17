@@ -8,6 +8,7 @@ import Appointments from './components/Appointments';
 import SessionNotes from './components/SessionNotes';
 import Payments from './components/Payments';
 import Analytics from './components/Analytics';
+import ServicesManagement from './components/ServicesManagement';
 
 function AppContent() {
   const [activeTab, setActiveTab] = useState('dashboard');
@@ -32,6 +33,7 @@ function AppContent() {
   const menuItems = [
     { id: 'dashboard', label: 'Dashboard', icon: BarChart3 },
     { id: 'clients', label: 'Clients', icon: Users },
+    { id: 'services', label: 'Services', icon: FileText },
     { id: 'appointments', label: 'Appointments', icon: Calendar },
     { id: 'sessions', label: 'Session Notes', icon: FileText },
     { id: 'payments', label: 'Payments', icon: DollarSign },
@@ -52,6 +54,8 @@ function AppContent() {
         return <Dashboard />;
       case 'clients':
         return <ClientManagement />;
+      case 'services':
+        return <ServicesManagement />;
       case 'appointments':
         return <Appointments />;
       case 'sessions':
