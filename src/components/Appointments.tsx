@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Calendar, Plus, ChevronLeft, ChevronRight, Edit, Trash2, X } from 'lucide-react';
+import { DateTimePicker } from './ui/datetime-picker';
 import { useAppointments } from '../hooks/useAppointments';
 import { Database } from '../lib/database.types';
 import { useClients } from '../hooks/useClients';
@@ -245,22 +246,18 @@ const Appointments = () => {
           <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
             <div>
               <label className='block text-sm font-medium text-sky-700 mb-2'>Start Time *</label>
-              <input
-                type='datetime-local'
-                required
-                value={formData.start_time}
-                onChange={(e) => setFormData({ ...formData, start_time: e.target.value })}
-                className='w-full px-3 py-2 border border-sky-200 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent'
+              <DateTimePicker
+                date={formData.start_time ? new Date(formData.start_time) : undefined}
+                onDateChange={(date) => setFormData({ ...formData, start_time: date ? date.toISOString() : '' })}
+                placeholder="Select start time"
               />
             </div>
             <div>
               <label className='block text-sm font-medium text-sky-700 mb-2'>End Time *</label>
-              <input
-                type='datetime-local'
-                required
-                value={formData.end_time}
-                onChange={(e) => setFormData({ ...formData, end_time: e.target.value })}
-                className='w-full px-3 py-2 border border-sky-200 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent'
+              <DateTimePicker
+                date={formData.end_time ? new Date(formData.end_time) : undefined}
+                onDateChange={(date) => setFormData({ ...formData, end_time: date ? date.toISOString() : '' })}
+                placeholder="Select end time"
               />
             </div>
           </div>

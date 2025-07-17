@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Plus, Search, Filter, FileText, User, Edit, Trash2, X } from 'lucide-react';
+import { DatePicker } from './ui/date-picker';
 import { useSessionNotes } from '../hooks/useSessionNotes';
 import { useClients } from '../hooks/useClients';
 import { useServices } from '../hooks/useServices';
@@ -163,12 +164,10 @@ const SessionNotes = () => {
             </div>
             <div>
               <label className='block text-sm font-medium text-teal-700 mb-2'>Session Date *</label>
-              <input
-                type='date'
-                required
-                value={formData.session_date}
-                onChange={(e) => setFormData({ ...formData, session_date: e.target.value })}
-                className='w-full px-3 py-2 border border-teal-200 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent'
+              <DatePicker
+                date={formData.session_date ? new Date(formData.session_date) : undefined}
+                onDateChange={(date) => setFormData({ ...formData, session_date: date ? date.toISOString().split('T')[0] : '' })}
+                placeholder="Select session date"
               />
             </div>
           </div>
@@ -195,7 +194,7 @@ const SessionNotes = () => {
               value={formData.notes}
               onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
               rows={4}
-              className='w-full px-3 py-2 border border-teal-200 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent'
+              className='w-full px-3 py-2 border border-teal-200 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent resize-none'
               placeholder='Describe what happened during the session...'
             />
           </div>
@@ -207,7 +206,7 @@ const SessionNotes = () => {
                 value={formData.goals}
                 onChange={(e) => setFormData({ ...formData, goals: e.target.value })}
                 rows={3}
-                className='w-full px-3 py-2 border border-teal-200 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent'
+                className='w-full px-3 py-2 border border-teal-200 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent resize-none'
                 placeholder='Session goals and objectives...'
               />
             </div>
@@ -217,7 +216,7 @@ const SessionNotes = () => {
                 value={formData.progress_notes}
                 onChange={(e) => setFormData({ ...formData, progress_notes: e.target.value })}
                 rows={3}
-                className='w-full px-3 py-2 border border-teal-200 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent'
+                className='w-full px-3 py-2 border border-teal-200 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent resize-none'
                 placeholder='Client progress and improvements...'
               />
             </div>
@@ -229,7 +228,7 @@ const SessionNotes = () => {
               value={formData.next_steps}
               onChange={(e) => setFormData({ ...formData, next_steps: e.target.value })}
               rows={3}
-              className='w-full px-3 py-2 border border-teal-200 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent'
+            className='w-full px-3 py-2 border border-teal-200 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent resize-none'
               placeholder='Recommendations and next steps...'
             />
           </div>
