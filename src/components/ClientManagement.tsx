@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Plus, Search, Filter, Phone, Mail, Calendar, X } from 'lucide-react';
+import { DatePicker } from './ui/date-picker';
 import { useClients } from '../hooks/useClients';
 import { Database } from '../lib/database.types';
 
@@ -179,11 +180,10 @@ const ClientManagement = () => {
           <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
             <div>
               <label className='block text-sm font-medium text-teal-700 mb-2'>Date of Birth</label>
-              <input
-                type='date'
-                value={formData.date_of_birth ?? ''}
-                onChange={(e) => setFormData({ ...formData, date_of_birth: e.target.value })}
-                className='w-full px-3 py-2 border border-teal-200 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent'
+              <DatePicker
+                date={formData.date_of_birth ? new Date(formData.date_of_birth) : undefined}
+                onDateChange={(date) => setFormData({ ...formData, date_of_birth: date ? date.toISOString().split('T')[0] : '' })}
+                placeholder="Select date of birth"
               />
             </div>
             <div>
@@ -206,7 +206,7 @@ const ClientManagement = () => {
               value={formData.address ?? ''}
               onChange={(e) => setFormData({ ...formData, address: e.target.value })}
               rows={2}
-              className='w-full px-3 py-2 border border-teal-200 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent'
+              className='w-full px-3 py-2 border border-teal-200 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent resize-none'
             />
           </div>
 
@@ -247,7 +247,7 @@ const ClientManagement = () => {
               value={formData.health_conditions ?? ''}
               onChange={(e) => setFormData({ ...formData, health_conditions: e.target.value })}
               rows={3}
-              className='w-full px-3 py-2 border border-teal-200 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent'
+              className='w-full px-3 py-2 border border-teal-200 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent resize-none'
             />
           </div>
 
@@ -257,7 +257,7 @@ const ClientManagement = () => {
               value={formData.medications ?? ''}
               onChange={(e) => setFormData({ ...formData, medications: e.target.value })}
               rows={3}
-              className='w-full px-3 py-2 border border-teal-200 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent'
+              className='w-full px-3 py-2 border border-teal-200 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent resize-none'
             />
           </div>
 
@@ -267,7 +267,7 @@ const ClientManagement = () => {
               value={formData.goals ?? ''}
               onChange={(e) => setFormData({ ...formData, goals: e.target.value })}
               rows={3}
-              className='w-full px-3 py-2 border border-teal-200 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent'
+              className='w-full px-3 py-2 border border-teal-200 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent resize-none'
             />
           </div>
 
@@ -277,7 +277,7 @@ const ClientManagement = () => {
               value={formData.notes ?? ''}
               onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
               rows={3}
-              className='w-full px-3 py-2 border border-teal-200 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent'
+              className='w-full px-3 py-2 border border-teal-200 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent resize-none'
             />
           </div>
 
