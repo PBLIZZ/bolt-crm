@@ -11,6 +11,7 @@ import {
   Trash2,
   X,
 } from 'lucide-react';
+import { DatePicker } from './ui/date-picker';
 import { usePayments } from '../hooks/usePayments';
 import { useClients } from '../hooks/useClients';
 import { useServices } from '../hooks/useServices';
@@ -335,13 +336,10 @@ const Payments = () => {
             </div>
             <div>
               <label className='block text-sm font-medium text-gray-700 mb-2'>Payment Date</label>
-              <input
-                type='date'
-                value={paymentFormData.payment_date}
-                onChange={(e) =>
-                  setPaymentFormData({ ...paymentFormData, payment_date: e.target.value })
-                }
-                className='w-full px-3 py-2 border border-fuchsia-200 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent'
+              <DatePicker
+                date={paymentFormData.payment_date ? new Date(paymentFormData.payment_date) : undefined}
+                onDateChange={(date) => setPaymentFormData({ ...paymentFormData, payment_date: date ? date.toISOString().split('T')[0] : '' })}
+                placeholder="Select payment date"
               />
             </div>
           </div>
@@ -364,7 +362,7 @@ const Payments = () => {
               value={paymentFormData.notes}
               onChange={(e) => setPaymentFormData({ ...paymentFormData, notes: e.target.value })}
               rows={3}
-              className='w-full px-3 py-2 border border-fuchsia-200 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent'
+              className='w-full px-3 py-2 border border-fuchsia-200 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent resize-none'
             />
           </div>
 
@@ -431,7 +429,7 @@ const Payments = () => {
                 setPackageFormData({ ...packageFormData, description: e.target.value })
               }
               rows={3}
-              className='w-full px-3 py-2 border border-fuchsia-200 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent'
+              className='w-full px-3 py-2 border border-fuchsia-200 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent resize-none'
             />
           </div>
 
