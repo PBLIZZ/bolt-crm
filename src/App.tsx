@@ -44,6 +44,10 @@ const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) =
 
 // Main App Content with Routing
 function AppContent() {
+  const [activeTab, setActiveTab] = useState('dashboard');
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const { signOut } = useAuth();
+
   return (
     <Router>
       <Routes>
@@ -129,17 +133,7 @@ function AppContent() {
       </Routes>
     </Router>
   );
-}
 
-function App() {
-  return (
-    <AuthProvider>
-      <AppContent />
-    </AuthProvider>
-  );
-}
-
-export default App;
   const menuItems = [
     { id: 'dashboard', label: 'Dashboard', icon: BarChart3 },
     { id: 'clients', label: 'Clients', icon: Users },
